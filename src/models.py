@@ -1,35 +1,35 @@
-import os
-import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, Date
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.sql import func
+from datetime import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from eralchemy import render_er
 
 Base = declarative_base()
 
-class Profiles(Base):
+class Profile(Base):
     __tablename__ = 'profiles'
     # Here we define columns for the table profiles
-    user_id = Column(String(250), primary_key=True)
+    user_id = Column(String(50), primary_key=True)
+    email = Column(String(50), nullable=False, unique=True)
     avatar = Column(String(250))
     presentacion = Column(Text)
-    name = Column(String(250), nullable=False)
+    name = Column(String(50), nullable=False)
     website= Column(String(250))
+    created_at = Column(DateTime(), default=datetime.now())
 
-class Publicaciones(Base):
+class Publicacion(Base):
     __tablename__ = 'publicaciones'
     # Here we define columns for the table publicaciones.
     id_publicaciones = Column(Integer, primary_key=True)
     media = Column(String(250))
     descripcion = Column(Text)
-    created_at = Column(Date(), server_default=func.now())
+    created_at = Column(DateTime(), default=datetime.now())
     ubicacion = Column(String(250))
     owner = Column(String(250), ForeignKey('profiles.user_id'))
 
 
-class Comentarios(Base):
+class Comentario(Base):
     __tablename__ = 'comentarios'
     # Here we define columns for the table comentarios.
     id_comentario = Column(Integer, primary_key=True)
@@ -49,13 +49,13 @@ class Vistos(Base):
     id_vistos = Column(Integer, primary_key=True)
     usuarios = Column(String(250), ForeignKey('profiles.user_id'))
 
-class Historias(Base):
+class Historia(Base):
     __tablename__ = 'historias'
     # Here we define columns for the table historias.
     id_historias = Column(Integer, primary_key=True)
     owner_historia = Column(String(250), ForeignKey('profiles.user_id'))
     media = Column(String(250), nullable=False)
-    created_at = Column(Date(), server_default=func.now())
+    created_at = Column(DateTime(), default=datetime.now())
     vistos_historias = Column(Integer, ForeignKey('vistos.id_vistos'))
 
 class Followers(Base):
