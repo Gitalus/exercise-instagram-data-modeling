@@ -1,8 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
 from eralchemy import render_er
 
 Base = declarative_base()
@@ -21,12 +19,12 @@ class Profile(Base):
 class Publicacion(Base):
     __tablename__ = 'publicaciones'
     # Here we define columns for the table publicaciones.
-    id_publicaciones = Column(Integer, primary_key=True)
+    id_publicaciones = Column(Integer(), primary_key=True)
     media = Column(String(250))
-    descripcion = Column(Text)
+    descripcion = Column(Text())
     created_at = Column(DateTime(), default=datetime.now())
-    ubicacion = Column(String(250))
-    owner = Column(String(250), ForeignKey('profiles.user_id'))
+    ubicacion = Column(String(150))
+    owner = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
 
 
 class Comentario(Base):
@@ -63,9 +61,6 @@ class Followers(Base):
     # Here we define columns for the table followers.
     user_from = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
     user_to = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
-
-def to_dict(self):
-        return {}
 
 ## Draw from SQLAlchemy base
 try:
