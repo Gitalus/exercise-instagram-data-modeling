@@ -12,7 +12,6 @@ Base = declarative_base()
 class Profiles(Base):
     __tablename__ = 'profiles'
     # Here we define columns for the table profiles
-    # Notice that each column is also a normal Python instance attribute.
     user_id = Column(String(250), primary_key=True)
     avatar = Column(String(250))
     presentacion = Column(Text)
@@ -22,7 +21,6 @@ class Profiles(Base):
 class Publicaciones(Base):
     __tablename__ = 'publicaciones'
     # Here we define columns for the table publicaciones.
-    # Notice that each column is also a normal Python instance attribute.
     id_publicaciones = Column(Integer, primary_key=True)
     media = Column(String(250))
     descripcion = Column(Text)
@@ -34,7 +32,6 @@ class Publicaciones(Base):
 class Comentarios(Base):
     __tablename__ = 'comentarios'
     # Here we define columns for the table comentarios.
-    # Notice that each column is also a normal Python instance attribute.
     id_comentario = Column(Integer, primary_key=True)
     owner_comentario = Column(String(250), ForeignKey('profiles.user_id'))
     contenido = Column(Text)
@@ -42,7 +39,6 @@ class Comentarios(Base):
 class Likes(Base):
     __tablename__ = 'likes'
     # Here we define columns for the table likes.
-    # Notice that each column is also a normal Python instance attribute.
     usuarios = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
     id_comentario = Column(Integer, ForeignKey('comentarios.id_comentario'), primary_key=True)
     id_publicaciones = Column(Integer, ForeignKey('publicaciones.id_publicaciones'), primary_key=True)
@@ -50,14 +46,12 @@ class Likes(Base):
 class Vistos(Base):
     __tablename__ = 'vistos'
     # Here we define columns for the table vistos.
-    # Notice that each column is also a normal Python instance attribute.
     id_vistos = Column(Integer, primary_key=True)
     usuarios = Column(String(250), ForeignKey('profiles.user_id'))
 
 class Historias(Base):
     __tablename__ = 'historias'
     # Here we define columns for the table historias.
-    # Notice that each column is also a normal Python instance attribute.
     id_historias = Column(Integer, primary_key=True)
     owner_historia = Column(String(250), ForeignKey('profiles.user_id'))
     media = Column(String(250), nullable=False)
@@ -67,7 +61,6 @@ class Historias(Base):
 class Followers(Base):
     __tablename__ = 'followers'
     # Here we define columns for the table followers.
-    # Notice that each column is also a normal Python instance attribute.
     user_from = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
     user_to = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
 
