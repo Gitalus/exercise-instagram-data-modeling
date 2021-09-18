@@ -44,8 +44,8 @@ class Likes(Base):
 class Vistos(Base):
     __tablename__ = 'vistos'
     # Here we define columns for the table vistos.
-    id_vistos = Column(Integer(), primary_key=True)
-    usuarios = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
+    usuario = Column(String(50), ForeignKey('profiles.user_id'), primary_key=True)
+    historia = Column(Integer(), ForeignKey('historias.id_historias'), primary_key=True)
 
 class Historia(Base):
     __tablename__ = 'historias'
@@ -54,7 +54,6 @@ class Historia(Base):
     owner_historia = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
     media = Column(String(250), nullable=False)
     created_at = Column(DateTime(), default=datetime.now())
-    vistos_historias = Column(Integer, ForeignKey('vistos.id_vistos'))
 
 class Followers(Base):
     __tablename__ = 'followers'
