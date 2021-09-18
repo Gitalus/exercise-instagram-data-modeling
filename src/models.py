@@ -51,7 +51,7 @@ class Historia(Base):
     __tablename__ = 'historias'
     # Here we define columns for the table historias.
     id_historias = Column(Integer, primary_key=True)
-    owner_historia = Column(String(250), ForeignKey('profiles.user_id'))
+    owner_historia = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
     media = Column(String(250), nullable=False)
     created_at = Column(DateTime(), default=datetime.now())
     vistos_historias = Column(Integer, ForeignKey('vistos.id_vistos'))
