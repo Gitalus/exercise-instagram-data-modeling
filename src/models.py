@@ -44,8 +44,8 @@ class Likes(Base):
 class Vistos(Base):
     __tablename__ = 'vistos'
     # Here we define columns for the table vistos.
-    id_vistos = Column(Integer, primary_key=True)
-    usuarios = Column(String(250), ForeignKey('profiles.user_id'))
+    id_vistos = Column(Integer(), primary_key=True)
+    usuarios = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
 
 class Historia(Base):
     __tablename__ = 'historias'
