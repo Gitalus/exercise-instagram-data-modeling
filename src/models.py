@@ -37,9 +37,9 @@ class Comentario(Base):
 class Likes(Base):
     __tablename__ = 'likes'
     # Here we define columns for the table likes.
-    usuarios = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
-    id_comentario = Column(Integer, ForeignKey('comentarios.id_comentario'), primary_key=True)
-    id_publicaciones = Column(Integer, ForeignKey('publicaciones.id_publicaciones'), primary_key=True)
+    usuarios = Column(String(50), ForeignKey('profiles.user_id'), primary_key=True)
+    id_comentario = Column(Integer(), ForeignKey('comentarios.id_comentario'), primary_key=True)
+    id_publicaciones = Column(Integer(), ForeignKey('publicaciones.id_publicaciones'), primary_key=True)
 
 class Vistos(Base):
     __tablename__ = 'vistos'
