@@ -59,8 +59,8 @@ class Historia(Base):
 class Followers(Base):
     __tablename__ = 'followers'
     # Here we define columns for the table followers.
-    user_from = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
-    user_to = Column(String(250), ForeignKey('profiles.user_id'), primary_key=True)
+    user_from = Column(String(50), ForeignKey('profiles.user_id'), primary_key=True)
+    user_to = Column(String(50), ForeignKey('profiles.user_id'), primary_key=True)
 
 ## Draw from SQLAlchemy base
 try:
