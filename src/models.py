@@ -30,9 +30,9 @@ class Publicacion(Base):
 class Comentario(Base):
     __tablename__ = 'comentarios'
     # Here we define columns for the table comentarios.
-    id_comentario = Column(Integer, primary_key=True)
-    owner_comentario = Column(String(250), ForeignKey('profiles.user_id'))
-    contenido = Column(Text)
+    id_comentario = Column(Integer(), primary_key=True)
+    owner_comentario = Column(String(50), ForeignKey('profiles.user_id'), nullable=False)
+    contenido = Column(Text())
 
 class Likes(Base):
     __tablename__ = 'likes'
